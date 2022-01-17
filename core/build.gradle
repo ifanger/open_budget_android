@@ -1,0 +1,60 @@
+plugins {
+    id 'com.android.library'
+    id 'kotlin-android'
+}
+
+android {
+    compileSdk 31
+
+    defaultConfig {
+        minSdk 21
+        targetSdk 31
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+}
+
+
+dependencies {
+    apply from: '../dependencies.gradle'
+
+    api project(path: ':core:router')
+
+    api androidxDependencies.core
+    api androidxDependencies.appCompat
+    api androidxDependencies.viewBinding
+    api androidxDependencies.navigationFragment
+    api androidxDependencies.navigationUiKtx
+    api androidxDependencies.material
+    api androidxDependencies.lifecycle
+
+    api kotlinxDependencies.coroutinesCore
+
+    api koinDependencies.core
+    api koinDependencies.android
+    api koinDependencies.navigation
+
+    testImplementation testDependencies.junit
+
+    androidTestImplementation androidTestDependencies.junit
+    androidTestImplementation androidTestDependencies.espresso
+}

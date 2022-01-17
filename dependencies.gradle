@@ -1,0 +1,34 @@
+ext {
+    navigationVersion = '2.3.5'
+    koinVersion = "3.1.5"
+
+    androidxDependencies = [
+            core              : "androidx.core:core-ktx:1.7.0",
+            appCompat         : "androidx.appcompat:appcompat:1.4.1",
+            viewBinding       : "androidx.databinding:viewbinding:7.0.4",
+            navigationFragment: "androidx.navigation:navigation-fragment-ktx:${navigationVersion}",
+            navigationUiKtx   : "androidx.navigation:navigation-ui-ktx:${navigationVersion}",
+            material          : "com.google.android.material:material:1.5.0",
+            lifecycle         : "androidx.lifecycle:lifecycle-runtime-ktx:2.4.0",
+    ]
+
+    kotlinxDependencies = [
+            coroutinesCore: "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.0",
+    ]
+
+    koinDependencies = [
+            core      : "io.insert-koin:koin-core:${koinVersion}",
+            android   : "io.insert-koin:koin-android:${koinVersion}",
+            navigation: "io.insert-koin:koin-androidx-navigation:${koinVersion}",
+    ]
+
+    testDependencies = [
+            junit: "junit:junit:4.13.2",
+            koin : "io.insert-koin:koin-test:${koinVersion}",
+    ]
+
+    androidTestDependencies = [
+            junit   : "androidx.test.ext:junit:1.1.3",
+            espresso: "androidx.test.espresso:espresso-core:3.4.0",
+    ]
+}
