@@ -1,6 +1,8 @@
 ext {
     navigationVersion = '2.3.5'
     koinVersion = "3.1.5"
+    roomVersion = "2.4.0"
+
 
     androidxDependencies = [
             core              : "androidx.core:core-ktx:1.7.0",
@@ -10,10 +12,16 @@ ext {
             navigationUiKtx   : "androidx.navigation:navigation-ui-ktx:${navigationVersion}",
             material          : "com.google.android.material:material:1.5.0",
             lifecycle         : "androidx.lifecycle:lifecycle-runtime-ktx:2.4.0",
+            room              : "androidx.room:room-runtime:${roomVersion}",
+            roomKtx           : "androidx.room:room-ktx:${roomVersion}",
     ]
 
     kotlinxDependencies = [
             coroutinesCore: "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.0",
+    ]
+
+    roomDependencies = [
+            kapt: "androidx.room:room-compiler:$roomVersion"
     ]
 
     koinDependencies = [

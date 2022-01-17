@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.niun.budget.databinding.FragmentListBinding
 import com.niun.budget.domain.model.Budget
 import com.niun.budget.presentation.list.adapter.BudgetAdapter
@@ -57,9 +58,18 @@ internal class ListFragment :
     }
 
     private fun fillRecyclerView(budgets: List<Budget>) = with(binding) {
-        val adapter = BudgetAdapter(budgets)
+        val adapter = BudgetAdapter(budgets, ::onBudgetClick)
+
+        budgetList.layoutManager =
+            LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
         budgetList.setHasFixedSize(true)
         budgetList.adapter = adapter
+    }
+
+    private fun onBudgetClick(budget: Budget) {
+        budget.id?.let { budgetId ->
+            viewModel.sendAction(ListViewAction.ViewDetails(budgetId))
+        }
     }
 
     private fun setErrorState() {
@@ -76,17 +86,17 @@ internal class ListFragment :
 
     override fun onEventChanged(event: ListViewEvent?) {
         when (event) {
-            is ListViewEvent.OpenDetails -> onOpenDetails(event.id)
-            is ListViewEvent.ShowError -> onShowError()
+            is ListViewEvent.OpenDetails -> openDetails(event.id)
+            is ListViewEvent.ShowError -> showError()
         }
     }
 
-    private fun onOpenDetails(id: String) {
+    private fun openDetails(id: String) {
         val navController = findNavController()
         navController.navigate(ListFragmentDirections.actionListFragmentToDetailsFragment(id))
     }
 
-    private fun onShowError() {
+    private fun showError() {
         Toast.makeText(requireContext(), "Houve um erro ao carregar", Toast.LENGTH_LONG).show()
     }
 }

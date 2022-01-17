@@ -6,6 +6,7 @@ import com.niun.budget.presentation.list.viewmodel.action.ListViewAction
 import com.niun.budget.presentation.list.viewmodel.event.ListViewEvent
 import com.niun.budget.presentation.list.viewmodel.state.ListViewState
 import com.niun.core.base.BaseViewModel
+import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.launch
@@ -23,8 +24,9 @@ internal class ListViewModel(
     }
 
     fun loadBudgets() = viewModelScope.launch {
-        getBudgetListUseCase.budgetList()
+        getBudgetListUseCase()
             .onStart { updateState(ListViewState.Loading) }
+            .catch { updateState(ListViewState.Error) }
             .collect {
                 updateState(ListViewState.Success(it))
             }

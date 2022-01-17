@@ -4,5 +4,5 @@ import com.niun.budget.domain.model.Budget
 import kotlinx.coroutines.flow.Flow
 
 interface GetBudgetListUseCase {
-    fun budgetList(): Flow<List<Budget>>
+    operator fun invoke(): Flow<List<Budget>>
 }
