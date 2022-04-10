@@ -1,3 +1,5 @@
+# TODO: PROJECT NOT FINISHED
+
 # Open Budget - Android
 Open-source Android project for managing budgets for autonomous professionals.
 The idea was to create an Android application using the latest AndroidX and Jetpack components (2022) and a modular/clean architecture.
